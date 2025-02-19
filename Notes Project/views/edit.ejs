@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Attaching custom css for proper working of a tag as the button was blocking the area of the a tag-->
+    <link rel="stylesheet" href="/Notes Project/public/stylesheets/style.css">
+</head>
+<body class = "bg-gray-900">
+    <h1 class = "text-6xl text-gray-200 font-bold text-center mt-4">Notes App</h1>
+    <div class=" mt-6 rounded-lg flex flex-col gap-2 justify-center items-center w-screen">
+        <form action="/edit/file/<%=filename %>" method="post" class = "flex flex-col gap-6 mt-4  bg-gray-200 p-4 rounded-lg shadow-lg shadow-black">
+            <div class = "flex flex-col gap-3">
+                <input class = " border-solid border-black border-1 rounded-sm " id = "task-name" type="text" name="prevName" disabled="true" placeholder="" value="<%=filename%>">
+            </div>
+            <div class = "flex flex-col gap-3">
+                <input class = " border-solid border-black border-1 rounded-sm text-gray-900" id = "task-name" type="text" name="newName" placeholder="New Name" required>
+            </div>
+            <button class = "bg-gray-900 px-2 py-2 text-center self-center rounded-md text-white shadow-md shadow-black hover:cursor-pointer hover:bg-gray-800 transition-all duration-200 ease-in-out mt-auto">Change Name</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Attaching custom css for proper working of a tag as the button was blocking the area of the a tag-->
+    <link rel="stylesheet" href="/Notes Project/public/stylesheets/style.css">
+</head>
+<body class = "bg-gray-900">
+    <h1 class = "text-6xl text-gray-200 font-bold text-center mt-4">Notes App</h1>
+    <div class=" mt-6 rounded-lg flex flex-col gap-2 justify-center items-center w-screen">
+        <form action="/create" method="post" class = "flex flex-col gap-6 mt-4  bg-gray-200 p-4 rounded-lg shadow-lg shadow-black">
+            <div class = "flex flex-col gap-3">
+                <label for="task-name">Enter a note</label>
+                <input class = " border-solid border-black border-1 rounded-sm " id = "task-name" type="text" name="note-title" required>
+            </div>
+            <div class = "flex flex-col gap-3">
+                <label for="task-desc">Enter the note description</label>
+                <textarea name="note-desc" class = " resize-none border-solid border-black border-1 rounded-sm " id = "task-desc"></textarea>
+            </div>
+            <button class = "bg-gray-900 px-2 py-2 text-center self-center rounded-md text-white shadow-md shadow-black hover:cursor-pointer hover:bg-gray-800 transition-all duration-200 ease-in-out mt-auto">Add Note</button>
+        </form>
+    </div>
+    <div class = "flex flex-row w-full h-full ml-3 mr-3 flex-wrap gap-4 mt-4">
+        <%if(files.length>0){ %>
+            <% files.forEach((ele)=>{ %>
+                <div class = " group bg-gray-200 min-w-50 h-auto rounded-md shadow-lg shadow-black flex flex-col gap-3 p-3 mt-3 transition-transform duration-300 hover:scale-105">
+                    <div class = "text-gray-900 text-xl font-semibold text-center"><%=ele.split('.')[0]%></div>
+                    <a class = "text-blue-900 text-lg hover:cursor-pointer inline-block mt-2" href="/file/<%=ele%>"> Read more..</a>
+                    <a class = "bg-gray-900 px-2 py-2 text-center self-center rounded-md text-white shadow-md shadow-black opacity-0 hover:cursor-pointer hover:bg-gray-800 group-hover:opacity-100 transition-all duration-200 ease-in-out mt-auto" href="/edit/file/<%= ele %>">Edit Filename</a>
+                </div>
+           <% }); %>
+        <% } else{%>
+            <h1 class = "text-xl text-gray-300 mt-4 ml-4">No Notes created yet.</h1>
+        
+        <%}%>
+    </div>
+</body>
+</html>
