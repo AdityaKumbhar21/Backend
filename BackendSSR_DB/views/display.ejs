@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-900">
+    <a class = " text-gray-300 px-1 py-1 w-auto h-auto text-lg hover:cursor-pointer hover:text-gray-700 inline-block mt-2 text-center pt-2 " href="/">Go Back to Home.</a>
+    <h1 class = "text-gray-200 text-center text-4xl font-bold mt-4 mb-6">All Users</h1>
+    <div class = "users w-screen h-full flex flex-row gap-4 mt-4 ml-4 flex-wrap">
+        <% if (users.length > 0) { %>
+            <% users.forEach(element => { %>
+           <div class = "bg-gray-200 min-w-1/5 p-2 rounded-lg shadow-lg shadow-black transition-transform duration-300 hover:scale-105 hover:cursor-pointer">
+                    <div class = "min-w-1/5 h-82 bg-gray-500 rounded-lg"><img class = "h-full w-full rounded-lg" src="<%= element.imageUrl.startsWith('https') ? element.imageUrl : "https://" + element.imageUrl  %>" alt="profile-pic" srcset=""></div>
+                    <h3 class = "text-gray-900 text-xl font-semibold mt-2 text-center"><%=element.name%></h3>
+                    <h3 class = "text-gray-500 text-lg  mt-auto text-center"><%=element.email%></h3>
+                    <div class = "flex flex-row justify-between mt-10">
+                        <a class = " text-gray-900 px-1 py-1 w-auto h-auto text-md hover:cursor-pointer hover:text-gray-700 inline-block mt-2 text-center pt-2" href="/edit/<%= element._id %>">Edit User</a>
+                        <a class = " text-red-700 px-1 py-1 w-auto h-auto text-md hover:cursor-pointer hover:text-red-800 inline-block mt-2 text-center pt-2" href="/delete/<%= element._id %>">Delete User</a>
+                    </div>
+                </div>
+                <% }) %>
+                <% } else { %>
+                    <h1 class = "text-gray-200 text-2xl font-semibold mt-2 text-center">No users found.</h1>
+                <% } %>
+         
+    </div>
+</body>
+</html>
