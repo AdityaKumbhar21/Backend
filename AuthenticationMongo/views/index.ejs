@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-900">
+    <div class = " p-10 mt-2">
+        <form action="/create" method="post"  class = "bg-gray-200 p-4 flex flex-col gap-3 rounded-lg w-fit">
+            <h1 class="text-gray-900 mb-4 text-center font-semibold mt-3 text-xl"> Create User</h1>
+            <input class="px-3 py-3 border-2 border-gray-900 rounded-lg w-[400px]" type="text" name="name" placeholder="Name" required>
+            <input class="px-3 py-3 border-2 border-gray-900 rounded-lg w-[400px]" type="email" name="email" placeholder="Email" required>
+            <input class="px-3 py-3 border-2 border-gray-900 rounded-lg w-[400px]" type="password" name="password" placeholder="Set a Password" required>
+            <input class="px-3 py-3 bg-gray-900 text-white rounded-lg w-[400px] shadow-md shadow-black hover:cursor-pointer hover:bg-gray-800 mt-auto" type="submit" value="Sign Up" placeholder="Sign Up">
+            <div class="text-gray-900 mb-4 text-center mt-3 text-lg">Already have an account? <a  class = "text-blue-600 hover:text-blue-800"href="/signIn">Sign In</a></div>
+        </form>
+    </div>
+</body>
+</html>
