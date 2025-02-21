@@ -38,6 +38,9 @@ app.post('/signIn',async (req, res)=>{
 
             if(!result) res.send("Password is incorrect");
             else{
+                //setting the cookie to keep the user logged in.
+                const token = jwt.sign({email:user.email},"secretkey");
+                res.cookie("token",token);
                 res.redirect("home");
             }
         });
@@ -53,7 +56,7 @@ app.post('/create',(req, res)=>{
                 email,
                 password:hash
             });
-
+            ////setting the cookie to keep the user logged in.
             // setting a cookie using jwt 
             const token = jwt.sign({email},"secretkey");
             res.cookie("token",token);
