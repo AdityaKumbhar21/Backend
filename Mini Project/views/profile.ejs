@@ -7,19 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-gray-800">
-        <h1 class = "text-6xl font-bold text-center text-white pt-4 mt-2 mb-4">Zwitter ! </h1>
-        <div class = "flex flex-col items-center text-gray-200">
-            <form class = "flex items-center" action="/createPost" method="post">
-                <textarea maxlength="120" class = "px-3 py-2 border-gray-600  resize-none w-[400px] rounded-lg border-1 outline-none" type="text" placeholder="Express your thoughts" name="content"></textarea>
-                <button class = "bg-blue-600 text-white ml-2 px-3 py-2 w-30 rounded-md hover:cursor-pointer hover:bg-blue-700" type="submit">Create Post</button>
-            </form>
-        </div>
+<body class = "bg-gray-800">
+    
+        <div class = "text-3xl font-semibold text-gray-200 ml-6 mt-6">Hello, <% if (user) { %>
+            <%= user.name %>
+        <% } %> 👋</div>
+        
+        <h1 class = "text-xl font-semibold text-gray-200 ml-6 mt-10 ">Your Posts.</h1>
         <div class="flex flex-wrap flex-col gap-2 p-4">
-            <% posts.forEach(post => {  %>
+            <% user.posts.reverse().forEach(post => {  %>
                 <div class="bg-gray-800 w-1/2  rounded-md px-3 text-gray-200 flex flex-col justify-center items-center border-1 border-solid border-gray-500">
-                <h4 class="text-blue-600 mt-2 self-start">@<%=post.user.username%></h4>
-                <p class="mt-3 mb-3 text-left"><%=post.content%></p>
+                <h4 class="text-blue-600 mt-2 self-start">@<%= user.username %></h4>
+                <p class="mt-3 mb-3  text-left"><%=post.content%></p>
                 <div class = "flex flex-row w-full gap-4 mb-2 mt-2">
                     <a class = "text-blue-600 self-start hover:text-blue-900" href="">Like</a>
                     <a class = "text-gray-500 hover:text-gray-600" href="">Edit</a>
@@ -29,5 +28,6 @@
           <%  }); %>
             
         </div>
+        <a class = " mt-4 inline-block ml-5 text-sm rounded-md outline-1 w-20 text-center px-3 py-2 outline-red-500 text-red-500 hover:bg-red-500 hover:text-white" href="/logout">Logout</a>
 </body>
 </html>

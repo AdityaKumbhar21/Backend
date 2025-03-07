@@ -77,8 +77,9 @@ app.post('/register',async (req, res)=>{
     
 });
 
-app.get('/home',isLoggedIn,(req, res)=>{
-    res.render('home');
+app.get('/home',isLoggedIn,async (req, res)=>{
+    const posts = await postModel.find().populate("user");
+    res.render('home',{posts});
 });
 
 app.get('/logout',(req, res)=>{
@@ -91,13 +92,30 @@ app.get('/error', (req, res)=>{
 })
 
 
+app.get('/profile',isLoggedIn,async (req, res)=>{
+    const user = await userModel.findOne({email:req.user.email}).populate("posts");
+    res.render("profile",{user});
+});
+
+app.post('/createPost',isLoggedIn,async (req, res)=>{
+    const {content} = req.body;
+    const user = await userModel.findOne({email: req.user.email});
+    const post = await postModel.create({
+        user:user._id,
+        content
+    });
+    user.posts.push(post);
+    user.save();
+    res.redirect('/home')
+});
+
 function isLoggedIn(req, res, next){
     if(req.cookies.token === ""){
         res.redirect("/error");
     }
     else{
         const data = jwt.verify(req.cookies.token , "secretKey");
-        console.log(data);
+        req.user = data;
         next();
     }
 }
