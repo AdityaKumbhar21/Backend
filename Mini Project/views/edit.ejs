@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwitter</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-800">
+        <h1 class = "text-3xl font-bold text-left text-white pt-4 mt-2 mb-4">Update your post ! </h1>
+        <div class = "flex flex-col justify-center text-gray-200">
+            <form class = "flex items-center" action="/updatePost/<%=post._id%>" method="post">
+                <textarea maxlength="120" class = "px-3 py-2 border-gray-600  resize-none w-[400px] rounded-lg border-1 outline-none" type="text" placeholder="Express your thoughts" name="content"><%=post.content%></textarea>
+                <button class = "bg-yellow-600 text-black ml-2 px-3 py-2 w-30 rounded-md hover:cursor-pointer hover:bg-yellow-700" type="submit">Update Post</button>
+            </form>
+        </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://127.0.0.1:27017/miniProject');
 
@@ -16,5 +16,4 @@ const userSchema = mongoose.Schema({
     ]
 });
 
-const userModel = mongoose.model('User', userSchema);
-export default userModel;
+module.exports = mongoose.model('User', userSchema);

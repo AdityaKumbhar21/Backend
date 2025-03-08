@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zwitter</title>
-    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body class = "bg-gray-800">
-    
+        <a class = "inline-block ml-2 text-gray-400  text-lg hover:underline mt-2"href="/home">⬅️ Back to Home.</a>
         <div class = "text-3xl font-semibold text-gray-200 ml-6 mt-6">Hello, <% if (user) { %>
             <%= user.name %>
         <% } %> 👋</div>
         
         <h1 class = "text-xl font-semibold text-gray-200 ml-6 mt-10 ">Your Posts.</h1>
+        <% if (user.posts.length > 0) { %>
         <div class="flex flex-wrap flex-col gap-2 p-4">
             <% user.posts.reverse().forEach(post => {  %>
-                <div class="bg-gray-800 w-1/2  rounded-md px-3 text-gray-200 flex flex-col justify-center items-center border-1 border-solid border-gray-500">
+                <div class="bg-gray-800 w-1/2  rounded-md px-3 text-gray-200 flex flex-col justify-center border-1 border-solid border-gray-500">
                 <h4 class="text-blue-600 mt-2 self-start">@<%= user.username %></h4>
                 <p class="mt-3 mb-3  text-left"><%=post.content%></p>
                 <div class = "flex flex-row w-full gap-4 mb-2 mt-2">
-                    <a class = "text-blue-600 self-start hover:text-blue-900" href="">Like</a>
-                    <a class = "text-gray-500 hover:text-gray-600" href="">Edit</a>
-                    <a class = "text-red-500  hover:text-red-600" href="">Delete</a>
+                    <a class = "text-blue-600 self-start hover:text-blue-900 text-sm" href="/likep/<%=post._id%>">
+                        <%= post.likes.indexOf(user._id) === -1 ? "Like" : "Unlike" %>
+                    </a>
+                    <small class ="inline-block text-sm text-gray-400"><%= post.likes.length %><%= post.likes.length === 1 ? " like" : " likes" %></small>
+                    <a class = "text-gray-500 hover:text-gray-600" href="/editPost/<%=post._id%>">Edit</a>
+                    <a class = "text-red-500  hover:text-red-600" href="/delete/<%=post._id%>">Delete</a>
                 </div>
             </div>
           <%  }); %>
             
-        </div>
+        </div>  
+        <% } else { %>
+            <div class = "text-md text-gray-200 ml-6 mt-10 ">No Posts yet <a class = "text-blue-500 hover:text-blue-600" href="/home">Get started here.</a></div>
+            <% } %>
         <a class = " mt-4 inline-block ml-5 text-sm rounded-md outline-1 w-20 text-center px-3 py-2 outline-red-500 text-red-500 hover:bg-red-500 hover:text-white" href="/logout">Logout</a>
 </body>
 </html>
