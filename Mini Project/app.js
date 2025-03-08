@@ -5,6 +5,7 @@ const postModel = require("./models/post");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const upload = require('./config/multerconfig');
 
 const app = express();
 
@@ -142,7 +143,17 @@ app.post('/updatePost/:id', isLoggedIn, async (req, res) => {
 app.get('/delete/:id',isLoggedIn,async (req, res)=>{
     await postModel.findOneAndDelete({_id: req.params.id});
     res.redirect('/profile');
+});
+
+app.get('/upload', isLoggedIn, (req, res)=>{
+    res.render('upload');
+});
+
+app.post('/upload',isLoggedIn, upload.single('image'), async(req, res)=>{
+    await userModel.findOneAndUpdate({email:req.user.email}, {profilePic: req.file.filename});
+    res.redirect('/profile');
 })
+
 
 function isLoggedIn(req, res, next) {
     if(req.cookies.token === "") {

@@ -8,9 +8,15 @@
 </head>
 <body class = "bg-gray-800">
         <a class = "inline-block ml-2 text-gray-400  text-lg hover:underline mt-2"href="/home">⬅️ Back to Home.</a>
-        <div class = "text-3xl font-semibold text-gray-200 ml-6 mt-6">Hello, <% if (user) { %>
-            <%= user.name %>
-        <% } %> 👋</div>
+        <div class = "flex justify-start gap-2 mt-9 ml-4">
+            <div class = " w-20 h-20 rounded-full overflow-hidden">
+                <img class="w-full h-full object-cover " src="/images/uploads/<%= user.profilePic %>" alt="">
+            </div>
+            <div class = "text-3xl font-semibold text-gray-200  mt-6">Hello, <% if (user) { %>
+                <%= user.name %>
+                <% } %> 👋</div>
+            </div>
+            <a  class = "text-blue-500 text-md ml-3 hover:underline hover:text-blue-600" href="/upload">Upload Image</a>
         
         <h1 class = "text-xl font-semibold text-gray-200 ml-6 mt-10 ">Your Posts.</h1>
         <% if (user.posts.length > 0) { %>

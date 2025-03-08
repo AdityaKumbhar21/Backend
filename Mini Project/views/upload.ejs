@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwitter</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-800">
+        <h1 class = "text-3xl font-bold text-left text-white pt-4 mt-2 mb-4">Upload your profile pic</h1>
+        <div class = "flex flex-col justify-center text-gray-200">
+            <form class = "flex items-center" action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" class = "px-3 py-2 border-1 rounded-lg" name="image">
+                <button class = "bg-yellow-600 text-black ml-2 px-3 py-2 w-30 rounded-md hover:cursor-pointer hover:bg-yellow-700" type="submit">Upload</button>
+            </form>
+        </div>
+</body>
+</html>
